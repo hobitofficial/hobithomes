@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: black;
+}
+
+.footer {
+  border-radius: 0 !important;
+}
+
+.footer-brand-logo {
+  color: white !important;
+}

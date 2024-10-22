@@ -1,0 +1,27 @@
+{
+  "name": "hobithomes",
+  "version": "1.0.0",
+  "description": "This project created for manage the Real Estate and Hostel features",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "npm install --prefix ./client && npm run build --prefix ./client && npm install"
+  },
+  "keywords": [],
+  "author": "The Hobit",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.1",
+    "nodemailer": "^6.9.15",
+    "nodemon": "^3.1.0",
+    "zod": "^3.22.4"
+  }
+}
