@@ -1,6 +1,5 @@
 // import { useEffect, useState } from "react";
 import { RiStarSFill } from "react-icons/ri";
-import { Carousel } from "flowbite-react";
 import Hostel from "../components/hostels/Hostel";
 
 export default function HostelFeatures() {
@@ -41,18 +40,7 @@ export default function HostelFeatures() {
       <div className="flex flex-col">
         {/* <div className="flex flex-wrap justify-center gap-8 my-4"> */}
         <div className="max-h-screen m-auto">
-          <Carousel
-            leftControl=" "
-            rightControl=" "
-            pauseOnHover
-            slideInterval={1000}
-            className="m-auto max-w-lg pb-4"
-          >
-            <Hostel />
-            <Hostel />
-            <Hostel />
-            <Hostel />
-          </Carousel>
+          <Hostel />
         </div>
         {/* </div> */}
         {/* <div className="flex flex-wrap justify-center items-center gap-4">
@@ -68,7 +56,7 @@ export default function HostelFeatures() {
         </div> */}
         <a
           href="/hostels"
-          className="text-center my-2 text-violet-500 underline"
+          className="text-center my-8 text-violet-500 underline"
         >
           View all Hostels
         </a>

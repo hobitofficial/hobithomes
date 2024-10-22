@@ -10,7 +10,7 @@ import logovideo from "../../public/logo.mp4";
 import { useSelector } from "react-redux";
 import { Avatar, Dropdown } from "flowbite-react";
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/home", current: true },
   { name: "Properties", href: "/properties", current: false },
   { name: "Hostels", href: "/hostels", current: false },
   { name: "About Us", href: "/about", current: false },
@@ -23,7 +23,6 @@ function classNames(...classes) {
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   return (
     <Disclosure
       as="nav"
@@ -123,7 +122,7 @@ export default function Header() {
                 </div>
               ) : (
                 <div>
-                  <MenuButton className="relative flex rounded-full bg-gray-900 text-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900">
+                  <MenuButton className="relative flex rounded-full bg-gray-900 text-xl ">
                     <span className="absolute -inset-1.5" />
                     <a
                       href="/signup"

@@ -58,6 +58,7 @@ export default class AuthController {
           expiresIn: "1y",
         }
       );
+      req.userId = validUser._id;
       const { password: pass, ...rest } = validUser._doc;
 
       return res
@@ -123,6 +124,17 @@ export default class AuthController {
       }
     } catch (error) {
       return res.status(500).json({ message: "Something Wrong!" });
+    }
+  }
+  async signout(req, res, next) {
+    console.log("Signout call");
+    try {
+      res.clearCookie("access_token");
+      return res.status(200).json({ message: "Signed out successfully" });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "An error occurred during signout" });
     }
   }
 }

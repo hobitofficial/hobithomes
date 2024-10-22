@@ -45,9 +45,9 @@ export default function Admin() {
         <div>
           {/* <AdminDrawer /> */}
 
-          <div className="flex min-h-[50vh] items-center ">
+          <div className="flex min-h-[30vh]  items-center ">
             <button onClick={() => setIsOpen(true)}>
-              <IoMenu className="text-white text-4xl" />
+              <IoMenu className="text-white text-4xl ml-12" />
             </button>
           </div>
           <Drawer open={isOpen} onClose={handleClose} className="bg-black">

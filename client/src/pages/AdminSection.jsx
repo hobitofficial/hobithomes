@@ -1,5 +1,4 @@
 import { FaArrowRight } from "react-icons/fa";
-
 export default function AdminSection() {
   return (
     <section className="w-full py-12 flex flex-wrap justify-center  bg-black border-y-2 border-gray-900 gap-8">
@@ -14,9 +13,12 @@ export default function AdminSection() {
         </p>
       </div>
       <div>
-        <button className="text-white text-lg p-2 border-none rounded-lg bg-violet-500 hover:bg-violet-700 flex items-center">
+        <a
+          href="/admin"
+          className="text-white text-lg p-2 border-none rounded-lg bg-violet-500 hover:bg-violet-700 flex items-center"
+        >
           Admin Panel <FaArrowRight className="ml-2" />
-        </button>
+        </a>
       </div>
     </section>
   );

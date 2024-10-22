@@ -8,6 +8,7 @@ router.post("/signup", authcontroller.signup);
 
 // route for login
 router.post("/signin", authcontroller.signin);
+router.post("/signout", authcontroller.signout);
 router.post("/google", authcontroller.google);
 
 export default router;

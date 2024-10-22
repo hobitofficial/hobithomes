@@ -24,6 +24,9 @@ const authSchema = new mongoose.Schema(
       type: String,
       default: "user",
     },
+    property: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );

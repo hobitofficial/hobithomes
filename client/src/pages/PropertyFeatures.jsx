@@ -41,18 +41,18 @@ export default function PropertyFeatures() {
       <div className="flex flex-col">
         {/* <div className="flex flex-wrap justify-center gap-8 my-4"> */}
         <div className="max-h-screen m-auto">
-          <Carousel
+          {/* <Carousel
             leftControl=" "
             rightControl=" "
             pauseOnHover
             slideInterval={1000}
             className="m-auto max-w-lg pb-4"
-          >
-            <Property />
-            <Property />
-            <Property />
-            <Property />
-          </Carousel>
+          > */}
+          <Property />
+          {/* <Property />
+          <Property />
+          <Property /> */}
+          {/* </Carousel> */}
         </div>
         {/* </div> */}
         {/* <div className="flex flex-wrap justify-center items-center gap-4">
@@ -68,7 +68,7 @@ export default function PropertyFeatures() {
         </div> */}
         <a
           href="/property"
-          className="text-center my-2 text-violet-500 underline"
+          className="text-center my-8 text-violet-500 underline"
         >
           View all Property
         </a>

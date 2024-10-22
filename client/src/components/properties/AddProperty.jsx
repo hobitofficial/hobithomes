@@ -1,8 +1,58 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 
 export default function AddProperty() {
   const [openModal, setOpenModal] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState("");
+  const [propertyData, setPropertyData] = useState({
+    name: "",
+    type: "",
+    location: "",
+    pseudoprice: "",
+    price: "",
+    description: "",
+  });
+
+  // Handle form data change
+  const handleChange = (e) => {
+    setPropertyData({
+      ...propertyData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission (dummy handler for now)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Set loading to true
+
+    try {
+      const res = await fetch("/api/property/addproperty", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(propertyData),
+      });
+
+      // Check if the response is not okay
+      if (!res.ok) {
+        const errorData = await res.json(); // Get error message from response
+        setError(errorData.message || "Property not created!"); // Set error message
+        setLoading(false); // Set loading to false
+        return; // Exit the function early
+      }
+
+      // Reset the state and close modal on successful property creation
+      setError(null); // Clear any previous errors
+      setOpenModal(false); // Close the modal
+      alert("Property created!"); // Notify the user
+    } catch (error) {
+      console.log(error.message); // Log the error
+      setError("An error occurred while creating the property."); // Set a general error message
+    } finally {
+      setLoading(false); // Ensure loading is set to false after the operation completes
+    }
+  };
 
   return (
     <>
@@ -12,33 +62,146 @@ export default function AddProperty() {
       >
         Add Property
       </button>
-      <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header className="bg-black ">
-          <span className="text-violet-500"> Add New Property</span>
-        </Modal.Header>
-        <Modal.Body className="bg-black">
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new
-              consumer privacy laws for its citizens, companies around the world
-              are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.)
-              goes into effect on May 25 and is meant to ensure a common set of
-              data rights in the European Union. It requires organizations to
-              notify users as soon as possible of high-risk data breaches that
-              could personally affect them.
-            </p>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>I accept</Button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
-            Decline
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+      {/* Modal with proper border styling */}
+      <div className="rounded-lg">
+        <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+          <Modal.Header className="bg-black rounded-t-lg">
+            <span className="text-violet-500">Add New Property</span>
+          </Modal.Header>
+          <Modal.Body className="bg-black">
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-6">
+                {/* Property Name */}
+                <div>
+                  <Label
+                    htmlFor="name"
+                    value="Property Name"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="name"
+                    name="name"
+                    placeholder="Enter property name "
+                    required
+                    value={propertyData.name}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+
+                {/* Property Type */}
+                <div>
+                  <Label
+                    htmlFor="type"
+                    value="Property Type"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="type"
+                    name="type"
+                    placeholder="Enter property type"
+                    required
+                    value={propertyData.type}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+
+                {/* Location */}
+                <div>
+                  <Label
+                    htmlFor="location"
+                    value="Location"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="location"
+                    name="location"
+                    placeholder="Enter location"
+                    required
+                    value={propertyData.location}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+
+                {/* Pseudo Price */}
+                <div>
+                  <Label
+                    htmlFor="pseudoprice"
+                    value="Pseudo Price (Rs.)"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="pseudoprice"
+                    name="pseudoprice"
+                    placeholder="Enter pseudo price"
+                    required
+                    type="number"
+                    value={propertyData.pseudoprice}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+
+                {/* Price */}
+                <div>
+                  <Label
+                    htmlFor="price"
+                    value="Price (Rs.)"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="price"
+                    name="price"
+                    placeholder="Enter price"
+                    required
+                    type="number"
+                    value={propertyData.price}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+
+                {/* Description */}
+                <div>
+                  <Label
+                    htmlFor="description"
+                    value="Description"
+                    className="text-white"
+                  />
+                  <Textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter property description"
+                    required
+                    value={propertyData.description}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer className="bg-black rounded-b-lg">
+            <Button className="bg-violet-500" onClick={handleSubmit}>
+              {loading ? "Loading..." : "Submit"}
+            </Button>
+            <Button color="gray" onClick={() => setOpenModal(false)}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+          {error && (
+            <div
+              className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <span className="font-medium">{error}</span>
+            </div>
+          )}
+        </Modal>
+      </div>
     </>
   );
 }

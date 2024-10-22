@@ -5,16 +5,19 @@ import Question from "./Question";
 import Landing from "../components/Landing";
 import Search from "../components/Search";
 import PropertyFeatures from "./PropertyFeatures";
+import { useSelector } from "react-redux";
 export default function Home() {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <>
       <Landing />
-      <Search />
+      {/* <Search /> */}
       <HostelFeatures />
       <PropertyFeatures />
       <UserReview />
       <Question />
-      <AdminSection />
+      {currentUser && <AdminSection />}
     </>
   );
 }

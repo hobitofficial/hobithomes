@@ -4,10 +4,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routers/auth.router.js";
-
+import propertyRoutes from "./routers/property.router.js";
+import path from "path";
+import { fileURLToPath } from "url";
 dotenv.config();
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //middleware
 app.use(
@@ -17,12 +22,24 @@ app.use(
     credentials: true,
   })
 );
+
+app.options(
+  "*",
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
-app.use(cors());
 app.use("/api/auth", authRoutes);
+app.use("/api/property", propertyRoutes);
 
 //connecting to DB
-
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
