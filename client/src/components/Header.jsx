@@ -122,16 +122,16 @@ export default function Header() {
                 </div>
               ) : (
                 <div>
-                  <MenuButton className="relative flex rounded-full bg-gray-900 text-xl ">
-                    <span className="absolute -inset-1.5" />
-                    <a
-                      href="/signup"
-                      className="text-md text-white p-2 rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 "
-                    >
-                      Signup/Login
-                    </a>
-                  </MenuButton>
-                </div>
+  <button className="relative flex rounded-full bg-gray-900 text-xl">
+    <a
+      href="/signup"
+      className="text-md text-white p-2 rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500"
+    >
+      Signup/Login
+    </a>
+  </button>
+</div>
+
               )}
             </Menu>
           </div>
