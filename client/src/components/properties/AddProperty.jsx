@@ -7,6 +7,7 @@ export default function AddProperty() {
   const [loading, setLoading] = useState("");
   const [propertyData, setPropertyData] = useState({
     name: "",
+    // owner: "",
     type: "",
     location: "",
     pseudoprice: "",
@@ -48,9 +49,8 @@ export default function AddProperty() {
       alert("Property created!"); // Notify the user
     } catch (error) {
       console.log(error.message); // Log the error
-      setError("An error occurred while creating the property."); // Set a general error message
-    } finally {
-      setLoading(false); // Ensure loading is set to false after the operation completes
+      setError("An error occurred while creating the property.");
+      return;
     }
   };
 
@@ -71,8 +71,27 @@ export default function AddProperty() {
           </Modal.Header>
           <Modal.Body className="bg-black">
             <form onSubmit={handleSubmit}>
+              {/* <div>
+                <input type="file" multiple />
+              </div> */}
               <div className="space-y-6">
                 {/* Property Name */}
+                {/* <div>
+                  <Label
+                    htmlFor="ownername"
+                    value="Owner Name"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="ownername"
+                    name="ownername"
+                    placeholder="Enter Owner name "
+                    required
+                    value={propertyData.owner}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div> */}
                 <div>
                   <Label
                     htmlFor="name"

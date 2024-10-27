@@ -2,9 +2,9 @@ import propertyVideo from "../assets/landingimage/propertyvideo.mp4";
 
 export default function Landing() {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-between w-full py-8 px-6 lg:px-16 mt-16">
+    <div className="flex flex-col lg:flex-row items-center justify-between w-full py-8 px-6 lg:px-16 mt-24">
       {/* Left Section */}
-      <div className="flex flex-col gap-6 lg:w-1/2">
+      <div className="flex flex-col  gap-8 pr-4 lg:w-1/2 lg:-mt-8">
         <h1 className="text-3xl font-semibold text-white">
           Discover Your Dream Property with <br />
           <span className="text-violet-500 text-center">Hobit Homes</span>

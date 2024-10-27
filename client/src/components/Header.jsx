@@ -10,7 +10,7 @@ import logovideo from "../../public/logo.mp4";
 import { useSelector } from "react-redux";
 import { Avatar, Dropdown } from "flowbite-react";
 const navigation = [
-  { name: "Home", href: "/home", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Properties", href: "/properties", current: false },
   { name: "Hostels", href: "/hostels", current: false },
   { name: "About Us", href: "/about", current: false },
@@ -45,7 +45,7 @@ export default function Header() {
             </DisclosureButton>
           </div>
           {/* <div className="flex items-center justify-center sm:items-stretch sm:justify-start"> */}
-          <div className="flex flex-shrink-0 items-center">
+          <div className="lg:flex flex-shrink-0 items-center sm:hidden ">
             <video
               src={logovideo}
               loop
@@ -55,7 +55,7 @@ export default function Header() {
               controls={false}
             />
 
-            <a href="/" className="text-white text-lg px-2 cursor-pointer">
+            <a href="/" className="text-white text-lg px-2 cursor-pointer ">
               Hobit Homes
             </a>
           </div>
@@ -71,7 +71,7 @@ export default function Header() {
                     item.current
                       ? "text-violet-500"
                       : "text-white hover:text-violet-500",
-                    "rounded-md px-3 py-2 text-lg font-medium "
+                    "rounded-md px-2 py-2 text-lg font-medium "
                   )}
                 >
                   {item.name}

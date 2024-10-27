@@ -3,21 +3,23 @@ import AdminSection from "./AdminSection";
 import UserReview from "./UserReview";
 import Question from "./Question";
 import Landing from "../components/Landing";
-import Search from "../components/Search";
-import PropertyFeatures from "./PropertyFeatures";
+// import Search from "../components/Search";
+import PropertyToShowUser from "./PropertyToShowUser";
 import { useSelector } from "react-redux";
+import MaintenancePage from "./Maintinance";
 export default function Home() {
   const { currentUser } = useSelector((state) => state.user);
 
   return (
     <>
-      <Landing />
-      {/* <Search /> */}
+      {/* <Landing />
+      <Search />
       <HostelFeatures />
-      <PropertyFeatures />
+      <PropertyToShowUser />
       <UserReview />
       <Question />
-      {currentUser && <AdminSection />}
+      {currentUser && <AdminSection />} */}
+      <MaintenancePage />
     </>
   );
 }
