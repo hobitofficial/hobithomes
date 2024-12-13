@@ -4,7 +4,7 @@ export default function QuestionCard() {
   return (
     <Card
       href="#"
-      className="max-w-sm p-8 bg-black border border-gray-800 rounded-lg my-8 hover:bg-dark"
+      className="max-w-6xl p-8 bg-black border border-gray-800 rounded-lg my-8 hover:bg-dark"
     >
       <h5 className="text-2xl font-bold tracking-tight text-white ">
         How do I Search for properties on Estatein?
@@ -14,7 +14,7 @@ export default function QuestionCard() {
         accusantium quis tempora magnam eveniet, recusandae quo aliquam saepe
         molestiae?
       </p>
-      <button className="bg-gray-700 text-white px-4 py-2 rounded-lg text-lg my-2 hover:bg-gray-600 ">
+      <button className="bg-gray-700 text-white px-4 py-2 rounded-lg text-lg my-2 hover:bg-gray-600 w-48  m-auto">
         Read More
       </button>
     </Card>

@@ -4,7 +4,7 @@ import { RiShareCircleLine } from "react-icons/ri";
 import logoimage from "../../public/logoimage.png";
 export default function FooterPage() {
   return (
-    <Footer container className="footer bg-black w-full">
+    <Footer container className=" footer bg-gray-900 w-full">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div className="mt-8">
@@ -21,7 +21,7 @@ export default function FooterPage() {
               <RiShareCircleLine className="text-gray-500 text-3xl mr-4  hover:text-violet-500" />
             </div>
           </div>
-          <div className="grid grid-cols-5 pr-12 mt-8 gap-4 ">
+          <div className="grid grid-cols-3 px-12 mt-8 gap-8">
             <div>
               <Footer.Title title="" />
               <Footer.LinkGroup col className="text-white text-lg">

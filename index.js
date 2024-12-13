@@ -1,10 +1,13 @@
 //importing necessary package
 import express from "express";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
-import authRoutes from "./routers/auth.router.js";
+import userRoutes from "./routers/user.router.js";
 import propertyRoutes from "./routers/property.router.js";
+import contactRoutes from "./routers/contact.router.js";
+
 import path from "path";
 import { fileURLToPath } from "url";
 dotenv.config();
@@ -31,9 +34,11 @@ app.options(
   })
 );
 
+app.use(cookieParser());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/property", propertyRoutes);
+app.use("/api/contact", contactRoutes);
 
 //connecting to DB
 app.use(express.static(path.join(__dirname, "/client/dist")));

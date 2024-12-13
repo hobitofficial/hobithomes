@@ -1,8 +1,8 @@
-import User from "../DataBase/auth.schema.js";
+import User from "../DataBase/user.schema.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
-export default class AuthController {
+export default class UserController {
   async signup(req, res, next) {
     try {
       const { name, email, password, person } = req.body;
@@ -58,9 +58,7 @@ export default class AuthController {
           expiresIn: "1y",
         }
       );
-      req.userId = validUser._id;
       const { password: pass, ...rest } = validUser._doc;
-
       return res
         .status(200)
         .cookie("access_token", token, {

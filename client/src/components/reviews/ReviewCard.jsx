@@ -2,7 +2,7 @@ import { Avatar, Blockquote, Rating } from "flowbite-react";
 
 export default function ReviewCard() {
   return (
-    <figure className="max-w-sm border border-gray-800 rounded-lg p-8 my-8">
+    <figure className="max-w-6xl border border-gray-800 rounded-lg p-8 my-8">
       <div className="mb-4 flex items-center">
         <Rating size="md">
           <Rating.Star />

@@ -1,24 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
 import {
-  setCurrentProperty,
   setLoading,
   setError,
   clearError,
 } from "../../redux/property/propertySlice.js";
-export default function AddProperty() {
+
+export default function UpdateProperty() {
   const dispatch = useDispatch();
-  const { error, loading, currentProperty } = useSelector(
+  const { error, loading, updateProperty } = useSelector(
     (state) => state.property
   );
+
+  // State for property details
   const [rooms, setRooms] = useState({
     bedrooms: 1,
     beds: 1,
     bathrooms: 1,
   });
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [propertyName, setPropertyName] = useState("");
+  const [location, setLocation] = useState("");
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [selectedBookingOptions, setSelectedBookingOptions] = useState([]);
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState([]);
@@ -133,6 +136,29 @@ export default function AddProperty() {
     "Sign Language",
   ];
 
+  // Load existing property data when the component mounts
+  useEffect(() => {
+    if (updateProperty) {
+      setPropertyName(updateProperty.propertyName);
+      setLocation(updateProperty.location);
+      setRooms(updateProperty.rooms);
+      setSelectedAmenities(updateProperty.selectedAmenities || []);
+      setSelectedBookingOptions(updateProperty.selectedBookingOptions || []);
+      setSelectedPropertyTypes(updateProperty.selectedPropertyTypes || []);
+      setSelectedLanguages(updateProperty.selectedLanguages || []);
+      setListedBy(updateProperty.listedBy);
+      setFurnishing(updateProperty.furnishing);
+      setDescription(updateProperty.description);
+      setPropertyPurpose(updateProperty.propertyPurpose);
+      setBhkOptions(updateProperty.bhkOptions || []);
+      setTerm(updateProperty.term);
+      setMinStayDuration(updateProperty.minStayDuration);
+      setGuests(updateProperty.guests);
+      setPseudoPrice(updateProperty.pseudoPrice);
+      setPrice(updateProperty.price);
+    }
+  }, [updateProperty]);
+
   const toggleSelection = (option, list, setList) => {
     setList((prevList) =>
       prevList.includes(option)
@@ -160,9 +186,8 @@ export default function AddProperty() {
   };
 
   const handleFileUpload = (event) => {
-    const files = Array.from(event.target.files); // Convert FileList to array
+    const files = Array.from(event.target.files);
     setUploadedFiles((prevFiles) => {
-      // Combine previous files with new files, ensuring no duplicates
       const allFiles = [...prevFiles, ...files];
       return allFiles.filter(
         (file, index, self) =>
@@ -180,7 +205,6 @@ export default function AddProperty() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Frontend validation
     if (
       price <= 0 ||
       pseudoPrice <= 0 ||
@@ -190,7 +214,7 @@ export default function AddProperty() {
       listedBy === null
     ) {
       alert(
-        "Please enter valid 1. price 2. guests   3. select short term or long term 4. furnishing 5. ListedBy"
+        "Please enter valid 1. price 2. guests 3. select short term or long term 4. furnishing 5. ListedBy"
       );
       return;
     }
@@ -198,7 +222,6 @@ export default function AddProperty() {
     dispatch(setLoading());
 
     const formData = new FormData();
-
     formData.append("propertyPurpose", propertyPurpose);
     formData.append("term", term);
     formData.append("minStayDuration", JSON.stringify(minStayDuration));
@@ -223,9 +246,10 @@ export default function AddProperty() {
     for (let i = 0; i < uploadedFiles.length; i++) {
       formData.append("uploadedFiles", uploadedFiles[i]);
     }
+    console.log(formData);
     try {
-      const response = await axios.post(
-        "http://localhost:5173/api/property/addProperty",
+      const response = await axios.put(
+        `http://localhost:5173/api/property/updateProperty/${updateProperty._id}`,
         formData,
         {
           headers: {
@@ -233,52 +257,44 @@ export default function AddProperty() {
           },
         }
       );
-      if (!response.status === 200) {
-        console.error("Error response:", response);
+      console.log(response);
+      if (response.status !== 200) {
         dispatch(
           setError(
-            response.data.message || "Error creating property, try again!"
+            response.data.message || "Error updating property, try again!"
           )
         );
-        alert("Error creating property, try again!");
-        return; // Exit the function early
+        alert("Error updating property, try again!");
+        return;
       }
 
-      // If successful, process the data
-      const data = response.data; // Assuming axios already parses JSON
-      console.log("data", data);
-
-      dispatch(setCurrentProperty(data));
       dispatch(clearError());
-      alert("Property created successfully!");
+      alert("Property updated successfully!");
     } catch (err) {
-      console.error("Network error:", err);
       dispatch(setError("Network error. Please try again."));
     }
   };
+
   return (
     <div className="p-6 bg-gray-900 text-white min-h-screen">
       <h1 className="text-3xl font-semibold mb-6 text-center">
-        Create Property
+        Update Property
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto space-y-6"
+        className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto space-y-6 z-10"
       >
-        {/* files upload */}
+        {/* Files upload */}
         <div>
           <label className="flex items-center text-violet-400 mb-2">
-            {" "}
-            Upload Images/videos{" "}
+            Upload New Images/Videos
           </label>
-
           <input
             type="file"
             multiple
-            required
             onChange={handleFileUpload}
-            className=" border border-gray-500 form-checkbox text-violet-600 mr-2 w-full"
+            className="border border-gray-500 form-checkbox text-violet-600 mr-2 w-full"
           />
         </div>
         {/* Display Uploaded Files */}
@@ -301,6 +317,35 @@ export default function AddProperty() {
             ))}
           </ul>
         </div>
+
+        {/* Property Name */}
+        <div>
+          <label className="block text-sm font-medium text-violet-400">
+            Property Name
+          </label>
+          <input
+            required
+            type="text"
+            value={propertyName}
+            onChange={(e) => setPropertyName(e.target.value)}
+            className="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        {/* Location */}
+        <div>
+          <label className="block text-sm font-medium text-violet-400">
+            Location
+          </label>
+          <input
+            required
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
         {/* Property Purpose */}
         <div>
           <label className="block text-md font-medium text-violet-400">
@@ -347,6 +392,7 @@ export default function AddProperty() {
             </label>
           </div>
         </div>
+
         {/* Minimum Stay Duration */}
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -375,7 +421,7 @@ export default function AddProperty() {
                 }
                 className="p-2 rounded bg-gray-700 text-white"
               >
-                <option value="days">Days</option>
+                <option value="days">Days</option>{" "}
                 <option value="weeks">Weeks</option>
                 <option value="months">Months</option>
                 <option value="years">Years</option>
@@ -396,6 +442,7 @@ export default function AddProperty() {
             />
           </div>
         </div>
+
         {/* Price Inputs */}
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -423,6 +470,7 @@ export default function AddProperty() {
             />
           </div>
         </div>
+
         {/* Rooms and Bedrooms */}
         <div>
           <h3 className="text-lg font-semibold text-violet-400">
@@ -451,6 +499,7 @@ export default function AddProperty() {
             </div>
           ))}
         </div>
+
         {/* Amenities */}
         <div className="mb-6">
           <h3 className="text-lg font-medium text-violet-400 mb-2">
@@ -458,7 +507,7 @@ export default function AddProperty() {
           </h3>
           {Object.entries(amenities).map(([category, items]) => (
             <div key={category} className="mb-4">
-              <h4 className="text-md font-semibold text-violet-300  mb-2">
+              <h4 className="text-md font-semibold text-violet-300 mb-2">
                 {category}
               </h4>
               <div className="grid grid-cols-2 gap-2">
@@ -476,13 +525,14 @@ export default function AddProperty() {
                       }
                       className="mr-2"
                     />
-                    <span className="">{amenity}</span>
+                    <span>{amenity}</span>
                   </label>
                 ))}
               </div>
             </div>
           ))}
         </div>
+
         {/* Booking Options */}
         <div className="mb-6">
           <h3 className="text-lg font-medium text-violet-400 mb-2">
@@ -508,6 +558,7 @@ export default function AddProperty() {
             ))}
           </div>
         </div>
+
         {/* Property Type */}
         <div className="mb-6">
           <h3 className="text-lg font-medium text-violet-400 mb-2">
@@ -533,6 +584,7 @@ export default function AddProperty() {
             ))}
           </div>
         </div>
+
         {/* BHK Options */}
         {selectedPropertyTypes.some((type) =>
           pseudoPropertytypes.includes(type)
@@ -559,8 +611,9 @@ export default function AddProperty() {
             </div>
           </div>
         )}
+
         {/* Furnishing */}
-        <div className="">
+        <div>
           <h3 className="text-lg font-medium text-violet-400">Furnishing</h3>
           <div className="flex space-x-2 mt-2">
             {furnishingOptions.map((option) => (
@@ -578,6 +631,7 @@ export default function AddProperty() {
             ))}
           </div>
         </div>
+
         {/* Listed By */}
         <div className="mb-4">
           <h3 className="text-lg font-medium text-violet-400">Listed By</h3>
@@ -597,6 +651,7 @@ export default function AddProperty() {
             ))}
           </div>
         </div>
+
         {/* Host Language */}
         <div className="mb-6">
           <h3 className="text-lg font-medium text-violet-400 mb-2">
@@ -622,14 +677,15 @@ export default function AddProperty() {
             ))}
           </div>
         </div>
-        {/* description Inputs */}
+
+        {/* Description Inputs */}
         <div>
           <label className="block text-sm font-medium text-violet-400">
-            Description{" "}
+            Description
           </label>
           <textarea
             required
-            placeholder="Write something about your properties "
+            placeholder="Write something about your property"
             name="description"
             id="description"
             minLength={20}
@@ -639,28 +695,22 @@ export default function AddProperty() {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
+
         {error && (
           <div
-            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
             role="alert"
           >
             {error}
           </div>
         )}
-        {currentProperty && (
-          <div
-            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-            role="alert"
-          >
-            Property created successfully!
-          </div>
-        )}
+
         {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 rounded mt-6"
         >
-          {loading ? "wait property creating..." : "Submit Property"}
+          Update Property
         </button>
       </form>
     </div>

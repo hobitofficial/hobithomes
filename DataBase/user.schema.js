@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const authSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -31,6 +31,6 @@ const authSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Auth = mongoose.model("Auth", authSchema);
+const User = mongoose.model("User", userSchema);
 
-export default Auth;
+export default User;

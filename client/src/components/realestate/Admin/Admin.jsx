@@ -41,11 +41,11 @@ export default function Admin() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-4">
+      <div className="p-24">
         <div>
           {/* <AdminDrawer /> */}
 
-          <div className="flex min-h-[30vh]  items-center ">
+          <div>
             <button onClick={() => setIsOpen(true)}>
               <IoMenu className="text-white text-4xl ml-12" />
             </button>
@@ -75,91 +75,117 @@ export default function Admin() {
                         <Sidebar.Item
                           icon={HiChartPie}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("dashboard")}
+                          onClick={() => {
+                            setTab("dashboard"), handleClose();
+                          }}
                         >
                           Dashboard
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiShoppingBag}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("property")}
+                          onClick={() => {
+                            setTab("property"), handleClose();
+                          }}
                         >
                           My Property
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiUsers}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("booking-requests")}
+                          onClick={() => {
+                            setTab("booking-requests"), handleClose();
+                          }}
                         >
                           Booking Requests
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiCash}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("finance-payments")}
+                          onClick={() => {
+                            setTab("finance-payments"), handleClose();
+                          }}
                         >
                           Finance/Payments
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiOfficeBuilding}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("staff")}
+                          onClick={() => {
+                            setTab("staff"), handleClose();
+                          }}
                         >
                           Staff
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiUsers}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("guests-tenants")}
+                          onClick={() => {
+                            setTab("guests-tenants"), handleClose();
+                          }}
                         >
                           Guests/Tenants
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiBriefcase}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("current-plan")}
+                          onClick={() => {
+                            setTab("current-plan"), handleClose();
+                          }}
                         >
                           Current Plan
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiSpeakerphone}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("boost-ranking")}
+                          onClick={() => {
+                            setTab("boost-ranking"), handleClose();
+                          }}
                         >
                           Boost Ranking
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiArchive}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("inventory")}
+                          onClick={() => {
+                            setTab("inventory"), handleClose();
+                          }}
                         >
                           Inventory
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiClipboard}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("expense-tracker")}
+                          onClick={() => {
+                            setTab("expense-tracker"), handleClose();
+                          }}
                         >
                           Expense Tracker
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiSpeakerphone}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("messages-notices")}
+                          onClick={() => {
+                            setTab("messages-notices"), handleClose();
+                          }}
                         >
                           Messages/Notices
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiCollection}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("invoice")}
+                          onClick={() => {
+                            setTab("invoice"), handleClose();
+                          }}
                         >
                           Invoice
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiClipboard}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("maintenance")}
+                          onClick={() => {
+                            setTab("maintenance"), handleClose();
+                          }}
                         >
                           Maintenance
                         </Sidebar.Item>
@@ -168,21 +194,27 @@ export default function Admin() {
                         <Sidebar.Item
                           icon={HiClipboard}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("account")}
+                          onClick={() => {
+                            setTab("account"), handleClose();
+                          }}
                         >
                           My Account
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiCollection}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("settings")}
+                          onClick={() => {
+                            setTab("settings"), handleClose();
+                          }}
                         >
                           Settings
                         </Sidebar.Item>
                         <Sidebar.Item
                           icon={HiInformationCircle}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("help")}
+                          onClick={() => {
+                            setTab("help"), handleClose();
+                          }}
                         >
                           Help
                         </Sidebar.Item>
@@ -190,7 +222,9 @@ export default function Admin() {
                           href="/signout"
                           icon={HiLogin}
                           className="text-white hover:bg-violet-500 cursor-pointer"
-                          onClick={() => setTab("Sign Out")}
+                          onClick={() => {
+                            setTab("Sign Out"), handleClose();
+                          }}
                         >
                           Sign Out
                         </Sidebar.Item>
@@ -202,7 +236,7 @@ export default function Admin() {
             </Drawer.Items>
           </Drawer>
         </div>
-        <div className="m-auto mt-24">
+        <div className="mx-auto ">
           {tab == "dashboard" && <Dashboard />}
           {tab == "booking-requests" && <BookingRequest />}
           {tab == "property" && <MyProperty />}

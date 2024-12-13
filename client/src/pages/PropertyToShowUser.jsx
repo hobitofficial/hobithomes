@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { RiStarSFill } from "react-icons/ri";
 
-export default function HostelFeatures() {
+export default function PropertyToShowUser() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -113,7 +113,7 @@ export default function HostelFeatures() {
         <RiStarSFill className="text-md text-orange-300" />
       </div>
       <div className="flex flex-col">
-        <h2 className="text-3xl font-bold">Hostels Featured</h2>
+        <h2 className="text-3xl font-bold">Property Featured</h2>
         <div className="my-2 w-full">
           <p className="text-gray-400 text-md font-thin w-1/2">
             Explore our handpicked selections of featured properties. Each

@@ -26,22 +26,16 @@ export default function UserReview() {
             Read the success stories and heartfelt testimonials from our valued
             clients.Discover why they chose Estatein for their real estate need.
           </p>
-          {/* {deviceWidth >= 600 && (
-            <button className="text-white text-md font-thin p-2 bg-gray-600 rounded-md hover:bg-gray-500 h-1/2">
-              Views All Testimonials
-            </button>
-          )} */}
         </div>
       </div>
       <div className="flex flex-col">
-        {/* <div className="flex flex-wrap justify-center gap-8 my-4"> */}
         <div className="max-h-screen m-auto">
           <Carousel
             leftControl=" "
             rightControl=" "
             pauseOnHover
-            slideInterval={1000}
-            className="m-auto max-w-lg pb-4"
+            slideInterval={3000}
+            className="m-auto max-w-6xl pb-4"
           >
             <ReviewCard />
             <ReviewCard />
@@ -49,17 +43,7 @@ export default function UserReview() {
             <ReviewCard />
           </Carousel>
         </div>
-        {/* <div className="flex flex-wrap justify-center items-center gap-4">
-          {deviceWidth <= 600 ? (
-            <div>
-              <button className="text-white text-md font-thin p-2 bg-gray-600 rounded-md hover:bg-gray-500 h-1/2 mt-4">
-                Views All Testimonials
-              </button>
-            </div>
-          ) : (
-            <MyPagination />
-          )}
-        </div> */}
+
         <a
           href="/reviews"
           className="text-center my-2 text-violet-500 underline"
