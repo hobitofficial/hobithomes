@@ -9,6 +9,7 @@ import {
   clearError,
 } from "../../redux/property/propertySlice.js";
 export default function AddProperty() {
+<<<<<<< HEAD
   const dispatch = useDispatch();
   const { error, loading, currentProperty } = useSelector(
     (state) => state.property
@@ -17,6 +18,19 @@ export default function AddProperty() {
     bedrooms: 1,
     beds: 1,
     bathrooms: 1,
+=======
+  const [openModal, setOpenModal] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState("");
+  const [propertyData, setPropertyData] = useState({
+    name: "",
+    // owner: "",
+    type: "",
+    location: "",
+    pseudoprice: "",
+    price: "",
+    description: "",
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
   });
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
@@ -244,6 +258,7 @@ export default function AddProperty() {
         return; // Exit the function early
       }
 
+<<<<<<< HEAD
       // If successful, process the data
       const data = response.data; // Assuming axios already parses JSON
       console.log("data", data);
@@ -254,6 +269,16 @@ export default function AddProperty() {
     } catch (err) {
       console.error("Network error:", err);
       dispatch(setError("Network error. Please try again."));
+=======
+      // Reset the state and close modal on successful property creation
+      setError(null); // Clear any previous errors
+      setOpenModal(false); // Close the modal
+      alert("Property created!"); // Notify the user
+    } catch (error) {
+      console.log(error.message); // Log the error
+      setError("An error occurred while creating the property.");
+      return;
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     }
   };
   return (
@@ -273,6 +298,7 @@ export default function AddProperty() {
             Upload Images/videos{" "}
           </label>
 
+<<<<<<< HEAD
           <input
             type="file"
             multiple
@@ -316,6 +342,53 @@ export default function AddProperty() {
             <option value="buy">Buy</option>
           </select>
         </div>
+=======
+      {/* Modal with proper border styling */}
+      <div className="rounded-lg">
+        <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+          <Modal.Header className="bg-black rounded-t-lg">
+            <span className="text-violet-500">Add New Property</span>
+          </Modal.Header>
+          <Modal.Body className="bg-black">
+            <form onSubmit={handleSubmit}>
+              {/* <div>
+                <input type="file" multiple />
+              </div> */}
+              <div className="space-y-6">
+                {/* Property Name */}
+                {/* <div>
+                  <Label
+                    htmlFor="ownername"
+                    value="Owner Name"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="ownername"
+                    name="ownername"
+                    placeholder="Enter Owner name "
+                    required
+                    value={propertyData.owner}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div> */}
+                <div>
+                  <Label
+                    htmlFor="name"
+                    value="Property Name"
+                    className="text-white"
+                  />
+                  <TextInput
+                    id="name"
+                    name="name"
+                    placeholder="Enter property name "
+                    required
+                    value={propertyData.name}
+                    onChange={handleChange}
+                    className="mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-lg"
+                  />
+                </div>
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
 
         {/* Term */}
         <div>

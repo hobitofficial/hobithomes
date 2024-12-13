@@ -12,14 +12,19 @@ export default function Home() {
 
   return (
     <>
-      <Landing />
-      {/* <Search /> */}
+      {/* <Landing />
+      <Search />
       <HostelFeatures />
       <PropertyToShowUser />
       <UserReview />
       <Question />
+<<<<<<< HEAD
       {currentUser && <AdminSection />}
       {/* <MaintenancePage /> */}
+=======
+      {currentUser && <AdminSection />} */}
+      <MaintenancePage />
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     </>
   );
 }

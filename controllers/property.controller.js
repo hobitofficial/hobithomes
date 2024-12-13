@@ -68,6 +68,7 @@ export default class PropertyController {
           type: file.type,
         })),
       });
+<<<<<<< HEAD
 
       // Save the property to the database
       await newProperty.save();
@@ -80,8 +81,19 @@ export default class PropertyController {
         return res.status(404).json({ message: "User  not found" });
       }
 
+=======
+      //   console.log(name, location, type, pseudoprice, price, description);
+      // Save the new property to the database
+      await newProperty.save();
+
+      // Find the user by req.userId
+      const user = await Auth.findOne({ _id: req.userId });
+      //   console.log("user:", user, "userid:", req.userId);
+      // Push the new property ID into the user's property array
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
       user.property.push(newProperty._id);
       await user.save();
+<<<<<<< HEAD
       // Respond with success
       return res.status(200).json({
         message: "Property added successfully!",
@@ -150,12 +162,16 @@ export default class PropertyController {
 
       // Return the properties if found
       return res.status(200).json({ properties });
+=======
+      return res.status(200).json({ message: "Property added successfully!" });
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     } catch (err) {
       console.log(err.message);
       return res.status(500).json({ message: "Something went wrong!" });
     }
   }
 
+<<<<<<< HEAD
   async adminProperty(req, res) {
     // Extract userId from request parameters
     const userId = req.params.userId; // Assuming the route is something like /adminProperty/:userId
@@ -183,13 +199,27 @@ export default class PropertyController {
 
       // // Check if properties are found
       if (validProperties.length === 0) {
+=======
+  async allProperty(req, res) {
+    try {
+      const properties = await Property.find();
+
+      // Check if properties are found
+      if (!properties || properties.length === 0) {
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
         return res.status(404).json({ message: "No properties found!" });
       }
 
       // Return the properties if found
+<<<<<<< HEAD
       return res.status(200).json({ properties: validProperties });
     } catch (err) {
       console.error("Error fetching properties:", err); // Log the entire error for debugging
+=======
+      return res.status(200).json({ properties });
+    } catch (err) {
+      console.log(err.message);
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
       return res.status(500).json({ message: "Something went wrong!" });
     }
   }
@@ -214,6 +244,7 @@ export default class PropertyController {
       return res.status(500).json({ message: "Internal Server Error!" });
     }
   }
+<<<<<<< HEAD
 
   async updateProperty(req, res) {
     const propId = new Object(req.params.propertyId);
@@ -357,4 +388,6 @@ export default class PropertyController {
       return res.status(500).json({ message: "Something went wrong!" });
     }
   }
+=======
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
 }

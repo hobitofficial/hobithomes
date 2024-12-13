@@ -11,11 +11,14 @@ import Hostel from "./components/hostels/Hostel";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
 import Demo from "./pages/Demo";
+<<<<<<< HEAD
 import PropertyDetails from "./components/properties/PropertyDetails";
 import AddProperty from "./components/properties/AddProperty";
 import UpdateProperty from "./components/properties/UpdateProperty";
 import MyProperty from "./components/realestate/Admin/MyProperty";
 import HostelFeatures from "./pages/HostelFeatures";
+=======
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
 
 function App() {
   return (
@@ -33,11 +36,14 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/demo" element={<Demo />} />
+<<<<<<< HEAD
         <Route path="/addProperty" element={<AddProperty />} />
         <Route path="/updateProperty" element={<UpdateProperty />} />
         <Route path="/propertydetails" element={<PropertyDetails />} />
         <Route path="/myproperty" element={<MyProperty />} />
         <Route path="/hostel" element={<HostelFeatures />} />
+=======
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
       </Routes>
       <FooterPage />
     </BrowserRouter>

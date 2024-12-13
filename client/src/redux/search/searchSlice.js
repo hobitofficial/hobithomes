@@ -4,7 +4,11 @@ const searchSlice = createSlice({
   name: "search", // Renamed to singular for consistency
   initialState: {
     searchData: null,
+<<<<<<< HEAD
     stayDuration: "shortTerm",
+=======
+    stayDuration: null,
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     error: null,
     loading: false,
   },

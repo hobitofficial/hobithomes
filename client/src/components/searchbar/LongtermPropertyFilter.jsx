@@ -20,7 +20,11 @@ const FilterModal = ({ isOpen, onClose }) => {
   const [amenities, setAmenities] = useState([]);
 
   const bhkOptions = ["1BHK", "2BHK", "3BHK", "4BHK", "5BHK", "5+BHK"];
+<<<<<<< HEAD
   const listedByOptions = ["Owner", "Agent", "Expert Pro Agents"];
+=======
+  const listedByOptions = ["Agent", "Owner", "Expert Pro Agents"];
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
   const furnishingOptions = [
     "Fully Furnished",
     "Semi Furnished",

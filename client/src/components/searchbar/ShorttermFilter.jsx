@@ -24,7 +24,10 @@ const FilterModal = ({ isOpen, onClose }) => {
       "Air conditioning",
       "TV",
       "Dryer",
+<<<<<<< HEAD
       "water Purifier",
+=======
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     ],
     Essentials: ["Heating", "Dedicated workspace", "Hair dryer", "Iron"],
     Features: [
@@ -37,31 +40,45 @@ const FilterModal = ({ isOpen, onClose }) => {
       "Gym",
       "BBQ grill",
       "Breakfast",
+<<<<<<< HEAD
       "Lunch",
       "Snacks",
       "Dinner",
       "Indoor fireplace",
       "Smoking allowed",
       "Parking Area",
+=======
+      "Indoor fireplace",
+      "Smoking allowed",
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     ],
     Safety: ["Smoke alarm", "Carbon monoxide alarm"],
   };
 
   const bookingOptions = ["Instant Book", "Self check-in", "Allows pets"];
   const propertyTypes = [
+<<<<<<< HEAD
     "Hotel",
     "PG",
     "Hostel",
+=======
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
     "House",
     "Villa",
     "Flat",
     "Apartment",
+<<<<<<< HEAD
     "Independent House",
     "Independent Floor",
     "Studio",
     "Duplex",
     "PentHouse",
     "Villa",
+=======
+    "PG",
+    "Hotel",
+    "Hostel",
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
   ];
   const hostLanguages = [
     "Chinese",

@@ -1,6 +1,7 @@
 import express from "express";
 import PropertyController from "../controllers/property.controller.js";
 import verifyToken from "../middlewares/tokenverify.middleware.js";
+<<<<<<< HEAD
 import upload from "../middlewares/properties/multer/multer.js";
 import uploadMultipleMedia from "../middlewares/properties/upload/uploadMultiples.js";
 const propertycontroller = new PropertyController();
@@ -33,5 +34,13 @@ router.put(
   uploadMultipleMedia,
   propertycontroller.updateProperty
 );
+=======
+const propertycontroller = new PropertyController();
+const router = express.Router();
+
+router.post("/addproperty", verifyToken, propertycontroller.addProperty);
+router.get("/allproperty", propertycontroller.allProperty);
+router.delete("/deleteproperty/:propertyId", propertycontroller.deleteProperty);
+>>>>>>> d8bbec615171b8e35e0a0e1de7cebc6cfa2390ab
 
 export default router;
